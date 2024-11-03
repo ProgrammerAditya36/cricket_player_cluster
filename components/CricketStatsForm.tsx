@@ -23,6 +23,7 @@ import {
 	DialogDescription,
 } from '@/components/ui/dialog';
 import axios from 'axios';
+import { getBadgeColor, getClusterName } from '@/functions';
 
 const formSchema = z.object({
 	matches: z.number().min(1),
@@ -134,7 +135,7 @@ export default function CricketStatsForm() {
 			<Card className="w-full max-w-4xl mx-auto">
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-center">
-						Cricket Player Statistics
+						Predict Your Player
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
@@ -191,16 +192,22 @@ export default function CricketStatsForm() {
 			</Card>
 
 			<Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-				<DialogContent className="sm:max-w-[425px] bg-gray-800 text-white">
+				<DialogContent
+					className={` w-[500px] text-white ${getBadgeColor(
+						cluster ?? 0
+					)}`}
+				>
 					<DialogHeader>
 						<DialogTitle>Prediction Result</DialogTitle>
-						<DialogDescription>
+						<DialogDescription className="text-white">
 							Based on the provided statistics, the player belongs
-							to:
+							to the category:
 						</DialogDescription>
 					</DialogHeader>
 					<div className="text-center py-4">
-						<p className="text-4xl font-bold">Cluster {cluster}</p>
+						<p className="text-4xl font-bold">
+							{getClusterName(cluster ?? 0)}
+						</p>
 					</div>
 				</DialogContent>
 			</Dialog>

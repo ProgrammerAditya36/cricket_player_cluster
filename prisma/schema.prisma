@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cluster_info {
+  gmm_cluster            Int                      @id
+  averagebatting         Float?
+  strikeratebatting      Float?
+  foursperinning         Float?
+  sixesperinning         Float?
+  catchespermatch        Float?
+  centuriesperinning     Float?
+  fiftiesperinning       Float?
+  wicketsperinning       Float?
+  maidensperinning       Float?
+  averagebowling         Float?
+  economy                Float?
+  strikeratebowling      Float?
+  ipl_stats_with_cluster ipl_stats_with_cluster[]
+}
+
+model ipl_stats_with_cluster {
+  player             String        @db.VarChar
+  matches            Int
+  inningsbat         Int?
+  inningsbowl        Int?
+  notout             Int?
+  runs               Int?
+  highest            Int?
+  averagebatting     Float?
+  ballsfaced         Int?
+  strikeratebatting  Float?
+  centuries          Int?
+  fifties            Int?
+  ducks              Int?
+  fours              Int?
+  sixes              Int?
+  oversbowled        Float?
+  maidens            Int?
+  runsconceded       Int?
+  wickets            Int?
+  averagebowling     Float?
+  economy            Float?
+  strikeratebowling  Float?
+  fourwickets        Int?
+  fivewickets        Int?
+  catches            Int?
+  foursperinning     Float?
+  sixesperinning     Float?
+  catchespermatch    Float?
+  centuriesperinning Float?
+  fiftiesperinning   Float?
+  wicketsperinning   Float?
+  maidensperinning   Float?
+  ballsbowled        Int?
+  gmm_cluster        Int?
+  cluster_info       cluster_info? @relation(fields: [gmm_cluster], references: [gmm_cluster], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([player, matches])
+}
