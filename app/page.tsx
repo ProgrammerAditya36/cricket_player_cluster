@@ -8,13 +8,17 @@ export default function HomePage() {
 	return (
 		<div className="container mx-auto py-10">
 			<h1 className="text-4xl text-white font-bold mb-8">
-				Player Cluster Model Dashboard
+				Cricket Player Category Prediction
 			</h1>
 			<Tabs defaultValue="players" className="w-full">
-				<TabsList className="bg-slate-500 text-white">
-					<TabsTrigger value="players">Player Stats</TabsTrigger>
-					<TabsTrigger value="clusters">Cluster Info</TabsTrigger>
-					<TabsTrigger value="predictions">
+				<TabsList className="bg-slate-500 w-full flex justify-around text-white">
+					<TabsTrigger className="w-full" value="players">
+						Player Stats
+					</TabsTrigger>
+					<TabsTrigger className="w-full" value="clusters">
+						Cluster Info
+					</TabsTrigger>
+					<TabsTrigger className="w-full" value="predictions">
 						Predict Your Player
 					</TabsTrigger>
 				</TabsList>

@@ -26,7 +26,7 @@ export const PlayerPageHeaders: PlayerPageHeader[] = [
 		value: 'averagebowling',
 	},
 	{
-		title: 'Cluster',
+		title: 'Category',
 		value: 'gmm_cluster',
 	},
 ];
@@ -40,15 +40,15 @@ export const allClusters: Cluster[] = [
 	},
 	{
 		cluster: 1,
-		name: 'Top Order Batsmen',
+		name: 'Fielding Batsman',
 		color: 'bg-blue-500',
-		tagname: 'TOP-BAT',
+		tagname: 'FIELD-BAT',
 	},
 	{
 		cluster: 2,
-		name: 'Batsmen Part-Time Bowlers',
+		name: 'Batting All Rounded',
 		color: 'bg-green-500',
-		tagname: 'BAT-PT-BOWL',
+		tagname: 'BAT-ALR',
 	},
 	{
 		cluster: 3,
@@ -64,8 +64,8 @@ export const allClusters: Cluster[] = [
 	},
 	{
 		cluster: 5,
-		name: 'Batting All-Rounders',
+		name: 'Top Order Batsman',
 		color: 'bg-purple-500',
-		tagname: 'BAT-ALR',
+		tagname: 'TOP-BAT',
 	},
 ];

@@ -111,10 +111,10 @@ export function PlayerStatsTable() {
 						}
 					>
 						<SelectTrigger className="w-full sm:w-[200px]">
-							<SelectValue placeholder="All Clusters" />
+							<SelectValue placeholder="All Categories" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="all">All Clusters</SelectItem>
+							<SelectItem value="all">All Categories</SelectItem>
 							{allClusters.map((cluster) => (
 								<SelectItem
 									key={cluster.cluster}
@@ -171,8 +171,11 @@ export function PlayerStatsTable() {
 													onClick={(e) => {
 														e.stopPropagation();
 														setFilterCluster(
-															player.gmm_cluster ??
-																null
+															filterCluster ===
+																player.gmm_cluster
+																? null
+																: player.gmm_cluster ??
+																		0
 														);
 													}}
 												>

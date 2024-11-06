@@ -26,25 +26,25 @@ import axios from 'axios';
 import { getBadgeColor, getClusterName } from '@/functions';
 
 const formSchema = z.object({
-	matches: z.number().min(1),
-	inningsBat: z.number().min(0),
-	inningsBowl: z.number().min(0),
-	notOut: z.number().min(0),
-	runs: z.number().min(0),
-	highest: z.number().min(0),
-	ballsFaced: z.number().min(0),
-	centuries: z.number().min(0),
-	fifties: z.number().min(0),
-	ducks: z.number().min(0),
-	fours: z.number().min(0),
-	sixes: z.number().min(0),
-	oversBowled: z.number().min(0),
-	maidens: z.number().min(0),
-	runsConceded: z.number().min(0),
-	wickets: z.number().min(0),
-	fourWickets: z.number().min(0),
-	fiveWickets: z.number().min(0),
-	catches: z.number().min(0),
+	matches: z.number().int().min(1),
+	inningsBat: z.number().int().min(0),
+	inningsBowl: z.number().int().min(0),
+	notOut: z.number().int().min(0),
+	runs: z.number().int().min(0),
+	highest: z.number().int().min(0),
+	ballsFaced: z.number().int().min(0),
+	centuries: z.number().int().min(0),
+	fifties: z.number().int().min(0),
+	ducks: z.number().int().min(0),
+	fours: z.number().int().min(0),
+	sixes: z.number().int().min(0),
+	oversBowled: z.number().min(0), // This remains as a float
+	maidens: z.number().int().min(0),
+	runsConceded: z.number().int().min(0),
+	wickets: z.number().int().min(0),
+	fourWickets: z.number().int().min(0),
+	fiveWickets: z.number().int().min(0),
+	catches: z.number().int().min(0),
 });
 
 export default function CricketStatsForm() {
@@ -129,10 +129,54 @@ export default function CricketStatsForm() {
 			console.error('Error predicting cluster:', error);
 		}
 	};
+	const formatkey = (key: string) => {
+		switch (key) {
+			case 'matches':
+				return 'Matches';
+			case 'inningsBat':
+				return 'Innings Batted';
+			case 'inningsBowl':
+				return 'Innings Bowled';
+			case 'notOut':
+				return 'Not Out';
+			case 'runs':
+				return 'Runs';
+			case 'highest':
+				return 'Highest Score';
+			case 'ballsFaced':
+				return 'Balls Faced';
+			case 'centuries':
+				return 'Centuries';
+			case 'fifties':
+				return 'Fifties';
+			case 'ducks':
+				return 'Ducks';
+			case 'fours':
+				return 'Fours';
+			case 'sixes':
+				return 'Sixes';
+			case 'oversBowled':
+				return 'Overs Bowled';
+			case 'maidens':
+				return 'Maidens';
+			case 'runsConceded':
+				return 'Runs Conceded';
+			case 'wickets':
+				return 'Wickets';
+			case 'fourWickets':
+				return 'Four Wickets';
+			case 'fiveWickets':
+				return 'Five Wickets';
+			case 'catches':
+				return 'Catches';
+			default:
+				return key;
+		}
+	};
 
 	return (
-		<div className="container mx-auto p-4">
-			<Card className="w-full max-w-4xl mx-auto">
+		<div>
+			<Card className="w-full  mx-auto">
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-center">
 						Predict Your Player
@@ -157,22 +201,31 @@ export default function CricketStatsForm() {
 										render={({ field }) => (
 											<FormItem>
 												<FormLabel>
-													{key
-														.charAt(0)
-														.toUpperCase() +
-														key.slice(1)}
+													{formatkey(key)}
 												</FormLabel>
 												<FormControl>
 													<Input
 														type="number"
 														step="0.1"
-														{...field}
+														// {...field}
+														placeholder={`Enter ${formatkey(
+															key
+														)}`}
 														onChange={(e) =>
 															field.onChange(
-																parseFloat(
-																	e.target
-																		.value
-																)
+																key ===
+																	'oversBowled'
+																	? parseFloat(
+																			e
+																				.target
+																				.value
+																	  )
+																	: parseInt(
+																			e
+																				.target
+																				.value,
+																			10
+																	  )
 															)
 														}
 													/>
