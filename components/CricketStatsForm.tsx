@@ -179,7 +179,7 @@ export default function CricketStatsForm() {
 			<Card className="w-full  mx-auto">
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-center">
-						Predict Your Player
+						Enter Player Statistics
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
@@ -188,7 +188,7 @@ export default function CricketStatsForm() {
 							onSubmit={form.handleSubmit(onSubmit)}
 							className="space-y-6"
 						>
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">
 								{Object.keys(form.getValues()).map((key) => (
 									<FormField
 										key={key}
@@ -237,7 +237,7 @@ export default function CricketStatsForm() {
 								))}
 							</div>
 							<Button type="submit" className="w-full">
-								Predict Cluster
+								Predict Category
 							</Button>
 						</form>
 					</Form>

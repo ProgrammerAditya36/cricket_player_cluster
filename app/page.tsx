@@ -7,7 +7,7 @@ import CricketStatsForm from '@/components/CricketStatsForm';
 export default function HomePage() {
 	return (
 		<div className="container mx-auto py-10">
-			<h1 className="text-4xl text-white font-bold mb-8">
+			<h1 className="text-4xl text-white text-center font-bold mb-8">
 				Cricket Player Category Prediction
 			</h1>
 			<Tabs defaultValue="players" className="w-full">
@@ -16,10 +16,10 @@ export default function HomePage() {
 						Player Stats
 					</TabsTrigger>
 					<TabsTrigger className="w-full" value="clusters">
-						Cluster Info
+						Category Info
 					</TabsTrigger>
 					<TabsTrigger className="w-full" value="predictions">
-						Predict Your Player
+						Predict Category
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent value="players">
